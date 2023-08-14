@@ -9,6 +9,7 @@ router
 
 router
     .route('/:id')
+    .patch(bookController.updateBook)
     .delete(bookController.deleteBook)
 
 module.exports = router;

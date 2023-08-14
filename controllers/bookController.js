@@ -38,9 +38,22 @@ exports.addNewBook = async (req, res) => {
     }
 }
 
-// exports.issueBook = async (req, res) => {
-    // }
-//
+exports.updateBook = async (req, res) => {
+    const bookId = req.params.id;
+    const updateData = req.body;
+  
+    try {
+      const updatedBook = await Book.findByIdAndUpdate(bookId, updateData, { new: true});
+  
+      if (!updatedBook) {
+        return res.status(404).json({ message: 'Book not found' });
+      }
+  
+      res.status(200).json(updatedBook);
+    } catch (error) {
+      res.status(500).json({ message: 'An error occurred' });
+    }
+  };
 
 exports.deleteBook = async (req, res) =>{
     try{
